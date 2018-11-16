@@ -1,43 +1,28 @@
 from queue import Queue
-from copy import deepcopy
 
 
 class Solution:
     def updateMatrix(self, matrix):
-        """
-        :type matrix: List[List[int]]
-        :rtype: List[List[int]]
-        """
-        def bfs(i, j):
-            # marked=deepcopy(visited)
-            q = Queue()
-            num = 0
-            # marked[i][j]=1
-            q.put((i, j))
-            while not q.empty():
-                size = q.qsize()
-                for _ in range(size):
-                    mask = q.get()
-
-                    if matrix[mask[0]][mask[1]] == 0:
-                        return num
-                    for r, c in [[-1, 0], [1, 0], [0, 1], [0, -1]]:
-                        pos = mask[0] + r, mask[1] + c
-                        if pos[0] > -1 and pos[0] < height:
-                            if pos[1] > -1 and pos[1] < width:
-                                # if marked[pos[0]][pos[1]]==0:
-                                #     marked[pos[0]][pos[1]]=1
-                                q.put((pos[0], pos[1]))
-                num += 1
-
         width = len(matrix[0])
         height = len(matrix)
-        # visited=[[0]* width for _ in range(height)]
+        q = Queue()
+        dirs = [(-1, 0), (1, 0), (0, 1), (0, -1)]
         for i in range(height):
             for j in range(width):
                 if matrix[i][j] == 0:
+                    q.put((i, j))
+                else:
+                    matrix[i][j] = float('inf')
+
+        while not q.empty():
+            tem = q.get()
+            for d in dirs:
+                x, y = tem[0] + d[0], tem[1] + d[1]
+                if x < 0 or x >= height or y < 0 or y >= width or matrix[x][y] <= matrix[tem[0]][tem[1]]:
                     continue
-                matrix[i][j] = bfs(i, j)
+                else:
+                    matrix[x][y] = matrix[tem[0]][tem[1]] + 1
+                    q.put((x, y))
         return matrix
 
 
