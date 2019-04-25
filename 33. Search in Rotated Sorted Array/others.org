@@ -1,0 +1,61 @@
+* other solutions
+
+** find minimum
+Firstly, find the minimum. Then, see the List as a ascending list which binary search can be applied to.
+Time complexity: O(logN).
+#+BEGIN_SRC python
+
+class Solution:
+    def search(self, nums: 'List[int]', target: 'int') -> 'int':
+        left = 0
+        right = len(nums) - 1
+        while left < right:
+            mid = int((left + right)/2)
+            if nums[mid] < nums[right]:
+                right = mid
+            elif nums[mid] > nums[right]:
+                left = mid + 1
+        print(left)
+        lo = left
+        left = 0
+        right = len(nums) - 1
+        while left <= right:
+            mid = int((left + right)/2)
+            real_mid = (mid + lo ) % len(nums)
+            if nums[real_mid] == target:
+                return real_mid
+            if nums[real_mid] < target:
+                left = mid + 1
+            elif nums[real_mid] > target:
+                right = mid - 1
+        
+        return -1
+        
+#+END_SRC
+
+** if
+
+py soln 看到的。用 go 重写。
+#+BEGIN_SRC golang
+
+func search(nums []int, target int) int {
+	left, right := 0, len(nums)-1
+	var mid int
+	for left <= right {
+		mid = (left + right) / 2
+		if nums[mid] == target {
+			return mid
+		}
+		switch {
+		case target < nums[0] && nums[0] <= nums[mid],
+			nums[0] <= nums[mid] && nums[mid] < target,
+			nums[mid] < target && target <= nums[len(nums)-1]:
+			left = mid + 1
+		default:
+			right = mid - 1
+		}
+	}
+	return -1
+}
+
+#+END_SRC

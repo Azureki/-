@@ -1,0 +1,16 @@
+#+TITLE: 文件说明。
+* O(N)
+The solution with O(N) time complexity and that with O(logN) cost almost the same time.
+
+It seems that time used in leetcode does not have reference value.
+
+* complex
+main.py
+情况太多。复杂到自己都搞不懂，放弃分析。
+也可能是因为自己笨，没有化繁为简的能力。
+
+* 标准解法
+normal.go
+
+* others
+其他解法
