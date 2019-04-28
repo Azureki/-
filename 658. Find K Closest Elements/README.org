@@ -1,0 +1,15 @@
+#+TITLE: 查找最接近的k个元素
+* Solution1-排序
+Time Complexity: O(nlogn)
+文件：[[./find-k-closest-elements.py][find-k-closest-elements.py]]
+
+* Solution2-binary search
+
+Time Complexity: O(logn)
+使用二分搜索，找到左区间。
+初始化条件是 ~left=0, right=len(arr)-k~ .
+
+* failed attempts
+
+我一开始想找到中间，然后左右两边各一半。但是失败了。因为左右分布不均匀。
+
