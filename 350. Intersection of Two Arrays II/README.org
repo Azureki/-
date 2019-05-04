@@ -1,0 +1,42 @@
+#+TITLE: 两个数组的交 II
+
+
+* Solution 1: dict
+代码见：[[./main.py][python 解法]]
+** complexity
+
+Time: O(n+m)
+Space: 可以只存储一个 list 的 dict。O(m)
+
+* Solution 2: 排序+双指针
+** complexity
+Time:
+排序：O(mlogm)+O(nlogn)
+双指针遍历：min(O(m), O(n)
+Space: O(1)
+* Solution 3: 已排序，二分搜索
+
+假设已经排好序，并且数组 1 长度比数组 2 小。
+
+遍历数组 1,二分搜索数组 2.
+** complexity
+
+Time: O(mlogn)
+Space: O(1)
+* Solution 4: 排序小数组，遍历大数组
+** complexity
+
+Time: O(mlogm)+O(nlogm)
+Space: O(1)
+
+** code
+
+[[./binary_search/binary_search.go][go 实现]]
+
+我把两个都排序了。因为我写这个时是为了假设 leetcode 的 follow-up。也就是已经排序，而且一个数组长度比另一个小。
+
+如果没有排序的话，那么排序第一个（假设长度小的是第一个），遍历第二个更好。
+
+需要注意的是搜索可能会多次命中同一个位置，需要更新左边界。
+也可以用 bitset。像这里：[[https://leetcode.com/problems/intersection-of-two-arrays-ii/discuss/82396/6ms-solution-with-binary-search][6ms solution with binary search]]
+
