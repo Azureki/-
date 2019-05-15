@@ -1,0 +1,1 @@
+还有不需要min，max的一种方法：[[https://www.cnblogs.com/grandyang/p/4298435.html][C++ 解法三：]]
