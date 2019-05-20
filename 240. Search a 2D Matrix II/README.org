@@ -1,0 +1,14 @@
+#+TITLE: 240. Search a 2D Matrix II
+x,y 方向都递增的二维数组中找一个数。在剑指 offer 上做过。
+* 文件及解法说明
+** [[./sample_20ms_submission.go][20ms 示例解法]]
+别人的。时间复杂度 O(mlogn)。
+
+** [[./search_a_2d_matrix_ii.go][我的解法]]
+O(m+n)
+
+** 递归
+midx, midy := (top+right)/2, (left+right)/2
+若 matrix[midx][midy]<target, target 不可能在左上。接下来搜索右上，左下，右下；
+若 matrix[midx][midy]>target, target 不可能在右下。
+
