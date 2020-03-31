@@ -1,0 +1,19 @@
+* Solution
+** 三重循环 O(n^3)
+** 二分
+#+BEGIN_SRC python
+class Solution:
+    def numTeams(self, rating: List[int]) -> int:
+        res = 0
+        for rating2 in [rating, rating[::-1]]:
+            d = []
+            d2 = []
+            for val in rating2:
+                ind = bisect.bisect_right(d, val)
+                d.insert(ind, val)
+                d2.insert(ind, ind)
+                res += sum(d2[:ind])
+
+        return res
+#+END_SRC
+** DP

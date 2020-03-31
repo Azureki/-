@@ -1,0 +1,2 @@
+可以直接调用 collections 模块
+count = collections.Counter(arr)
