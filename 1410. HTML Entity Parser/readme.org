@@ -1,0 +1,19 @@
+
+* Solution
+其实可以用 replace 的，只要把 ~&amp;~ 另外判断就可以了。
+#+BEGIN_SRC python
+class Solution:
+    def entityParser(self, text: str) -> str:
+        special = {
+            "&quot;": '"',
+            "&apos;": "'",
+            # "&amp;": "&",
+            "&gt;": ">",
+            "&lt;": "<",
+            "&frasl;": "/"}
+
+        for entity, ch in special.items():
+            text = text.replace(entity, ch)
+        text = text.replace("&amp;", "&")
+        return text
+#+END_SRC
